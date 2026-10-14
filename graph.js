@@ -29,6 +29,24 @@
       membersByGroup.get(node.group).push(node);
     });
     if (largeGraph) {
+      const goldenAngle = Math.PI * (3 - Math.sqrt(5));
+      const spacing = 92;
+      const ordered = [...nodes].sort((a, b) => {
+        if (a.home !== b.home) return a.home ? -1 : 1;
+        return (b.degree || 0) - (a.degree || 0) || hash(a.id) - hash(b.id);
+      });
+      ordered.forEach((node, index) => {
+        const distance = index === 0 ? 0 : spacing * Math.sqrt(index);
+        const angleJitter = ((hash(node.id) % 21) - 10) / 240;
+        const angle = index * goldenAngle + angleJitter;
+        node.x = centerX + Math.cos(angle) * distance * 1.35;
+        node.y = centerY + Math.sin(angle) * distance * .72;
+        node.vx = 0;
+        node.vy = 0;
+      });
+      return new Map(nodes.map((node) => [node.id, node]));
+    }
+    if (largeGraph) {
       const horizontalGap = 150;
       const verticalGap = 150;
       const nodeGapX = 130;
@@ -301,7 +319,7 @@
         role: 'link',
         'aria-label': `${node.title}, ${node.group}`
       });
-      const radius = (6.5 + Math.min(node.degree || 0, 8) * .7 + (node.home ? 3 : 0)) * (mode === 'global' ? 1.35 : 1);
+      const radius = (6.5 + Math.min(node.degree || 0, 8) * .7 + (node.home ? 3 : 0)) * (mode === 'global' ? .25 : 1);
       group.append(createSvg('circle', {r: radius, fill: colors.get(node.group)}));
       const label = createSvg('text', {
         x: radius + 5,
@@ -341,7 +359,7 @@
       return item;
     }));
 
-    const initialScale = mode === 'global' ? 1.35 : 1;
+    const initialScale = mode === 'global' ? 7.5 : 1;
     let scale = initialScale;
     let panX = width * (1 - initialScale) / 2;
     let panY = height * (1 - initialScale) / 2;

@@ -145,7 +145,9 @@ kbd { border: 1px solid rgba(255,255,255,.13); background: rgba(0,0,0,.2); borde
 .graph-node.focus circle { stroke: var(--accent); stroke-width: 4; }
 .graph-node:hover circle { stroke: var(--text); }
 .graph-node text { fill: var(--text); font-family: var(--sans); font-size: 10px; paint-order: stroke; stroke: var(--panel); stroke-width: 4px; stroke-linejoin: round; pointer-events: none; }
-.global-graph .graph-node text { font-size: 15px; stroke: #000; stroke-width: 5px; }
+.global-graph .graph-edge { stroke-width: .3; }
+.global-graph .graph-edge.explicit { stroke-width: .45; }
+.global-graph .graph-node text { font-size: 4px; stroke: #000; stroke-width: 1.4px; }
 .graph-node text.minor { display: none; }
 .graph-node:hover text.minor, .graph-node.search-match text.minor { display: block; }
 .graph-node.search-match circle { stroke: var(--text); stroke-width: 4; filter: drop-shadow(0 0 7px color-mix(in srgb, var(--accent) 62%, transparent)); }
