@@ -359,7 +359,7 @@
       return item;
     }));
 
-    const initialScale = mode === 'global' ? 7.5 : 1;
+    const initialScale = mode === 'global' ? 10 : 1;
     let scale = initialScale;
     let panX = width * (1 - initialScale) / 2;
     let panY = height * (1 - initialScale) / 2;
