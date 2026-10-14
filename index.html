@@ -21,7 +21,15 @@
     <div class="page-area">
       <header class="mobile-header"><button class="icon-button" type="button" data-menu-toggle aria-label="Open menu">☰</button><a href="index.html">School Vault</a><button class="icon-button" type="button" data-open-search aria-label="Search">⌕</button></header>
       <main class="main-content">
-        <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="index.html">Home</a></nav>
+        <section class="graph-section global-graph-section">
+      <div class="graph-heading"><div><span class="eyebrow">Connections</span><h2>School Vault graph</h2><p>Explore all 171 notes across every subject. Drag nodes, pan the canvas, zoom, search, or select a note to open it.</p></div>
+      <div class="graph-actions"><label class="graph-search"><span>Find a note</span><input type="search" data-graph-search placeholder="Search nodes…" autocomplete="off"></label><div class="graph-controls"><button type="button" data-graph-zoom="out" aria-label="Zoom out">−</button><button type="button" data-graph-reset>Reset</button><button type="button" data-graph-zoom="in" aria-label="Zoom in">+</button></div></div></div>
+      <div class="knowledge-graph" data-graph-url="graphs/global-vault.json" data-focus="00-Home" data-mode="global">
+        <div class="graph-loading">Building graph…</div>
+      </div>
+      <div class="graph-legend" aria-label="Graph legend"></div>
+    </section>
+        
         <article class="note">
           <div class="note-topline"><span class="eyebrow">Vault</span><div class="chips"><span class="chip">#type/dashboard</span></div></div>
           <h1 id="school-home">School Home</h1>
