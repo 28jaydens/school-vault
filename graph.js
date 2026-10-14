@@ -20,11 +20,42 @@
   const layout = (nodes, edges, width, height) => {
     const centerX = width / 2;
     const centerY = height / 2;
-    const radius = Math.min(width, height) * (nodes.length > 100 ? .42 : .35);
+    const largeGraph = nodes.length > 100;
+    const radius = Math.min(width, height) * .35;
+    const groupCenters = new Map();
+    const membersByGroup = new Map();
+    nodes.forEach((node) => {
+      if (!membersByGroup.has(node.group)) membersByGroup.set(node.group, []);
+      membersByGroup.get(node.group).push(node);
+    });
+    if (largeGraph) {
+      const groupNames = [...membersByGroup.keys()].sort();
+      const columns = Math.ceil(Math.sqrt(groupNames.length * width / height));
+      const rows = Math.ceil(groupNames.length / columns);
+      const cellWidth = width / columns;
+      const cellHeight = height / rows;
+      groupNames.forEach((group, index) => {
+        groupCenters.set(group, {
+          x: cellWidth * (index % columns + .5),
+          y: cellHeight * (Math.floor(index / columns) + .5)
+        });
+      });
+    }
     nodes.forEach((node, index) => {
-      const angle = (index / Math.max(nodes.length, 1)) * Math.PI * 2 + (hash(node.id) % 100) / 100;
-      node.x = centerX + Math.cos(angle) * radius * (.65 + (hash(`${node.id}r`) % 35) / 100);
-      node.y = centerY + Math.sin(angle) * radius * (.65 + (hash(`${node.id}y`) % 35) / 100);
+      if (largeGraph) {
+        const members = membersByGroup.get(node.group);
+        const memberIndex = members.indexOf(node);
+        const cluster = groupCenters.get(node.group);
+        const cellRadius = Math.min(width / Math.ceil(Math.sqrt(groupCenters.size * width / height)), height / Math.ceil(groupCenters.size / Math.ceil(Math.sqrt(groupCenters.size * width / height)))) * .36;
+        const angle = memberIndex * 2.399963 + (hash(node.group) % 100) / 100;
+        const distance = cellRadius * Math.sqrt((memberIndex + 1) / Math.max(members.length, 1));
+        node.x = cluster.x + Math.cos(angle) * distance;
+        node.y = cluster.y + Math.sin(angle) * distance;
+      } else {
+        const angle = (index / Math.max(nodes.length, 1)) * Math.PI * 2 + (hash(node.id) % 100) / 100;
+        node.x = centerX + Math.cos(angle) * radius * (.65 + (hash(`${node.id}r`) % 35) / 100);
+        node.y = centerY + Math.sin(angle) * radius * (.65 + (hash(`${node.id}y`) % 35) / 100);
+      }
       node.vx = 0;
       node.vy = 0;
     });
@@ -40,7 +71,7 @@
           let dx = b.x - a.x;
           let dy = b.y - a.y;
           const distanceSq = Math.max(dx * dx + dy * dy, 80);
-          const force = (nodes.length > 100 ? 2350 : nodes.length > 30 ? 950 : 720) / distanceSq;
+          const force = (largeGraph ? 2100 : nodes.length > 30 ? 950 : 720) / distanceSq;
           const distance = Math.sqrt(distanceSq);
           dx /= distance;
           dy /= distance;
@@ -57,7 +88,7 @@
         const dx = b.x - a.x;
         const dy = b.y - a.y;
         const distance = Math.max(Math.sqrt(dx * dx + dy * dy), 1);
-        const ideal = nodes.length > 100 ? (edge.type === 'link' ? 140 : 195) : (edge.type === 'link' ? 105 : 145);
+        const ideal = largeGraph ? (a.group === b.group ? 115 : 280) : (edge.type === 'link' ? 105 : 145);
         const force = (distance - ideal) * .0038;
         a.vx += (dx / distance) * force;
         a.vy += (dy / distance) * force;
@@ -65,12 +96,47 @@
         b.vy -= (dy / distance) * force;
       });
       nodes.forEach((node) => {
-        node.vx += (centerX - node.x) * .0008;
-        node.vy += (centerY - node.y) * .0008;
+        const target = largeGraph ? groupCenters.get(node.group) : {x: centerX, y: centerY};
+        node.vx += (target.x - node.x) * (largeGraph ? .0017 : .0008);
+        node.vy += (target.y - node.y) * (largeGraph ? .0017 : .0008);
         node.vx *= .82;
         node.vy *= .82;
-        node.x = clamp(node.x + node.vx * cooling, 36, width - 36);
-        node.y = clamp(node.y + node.vy * cooling, 28, height - 28);
+        node.x = clamp(node.x + node.vx * cooling, 42, width - 42);
+        node.y = clamp(node.y + node.vy * cooling, 36, height - 36);
+      });
+    }
+
+    const collisionPasses = largeGraph ? 110 : 25;
+    for (let pass = 0; pass < collisionPasses; pass += 1) {
+      for (let i = 0; i < nodes.length; i += 1) {
+        const a = nodes[i];
+        for (let j = i + 1; j < nodes.length; j += 1) {
+          const b = nodes[j];
+          let dx = b.x - a.x;
+          let dy = b.y - a.y;
+          let distance = Math.sqrt(dx * dx + dy * dy);
+          if (distance < .01) {
+            const angle = (hash(`${a.id}:${b.id}`) % 628) / 100;
+            dx = Math.cos(angle);
+            dy = Math.sin(angle);
+            distance = 1;
+          }
+          const minimum = largeGraph
+            ? 29 + Math.min(((a.degree || 0) + (b.degree || 0)) * .28, 9) + ((a.home || b.home) ? 4 : 0)
+            : 20;
+          if (distance >= minimum) continue;
+          const shift = (minimum - distance) * .52;
+          const unitX = dx / distance;
+          const unitY = dy / distance;
+          a.x -= unitX * shift;
+          a.y -= unitY * shift;
+          b.x += unitX * shift;
+          b.y += unitY * shift;
+        }
+      }
+      nodes.forEach((node) => {
+        node.x = clamp(node.x, 42, width - 42);
+        node.y = clamp(node.y, 36, height - 36);
       });
     }
     return map;
@@ -105,8 +171,8 @@
       container.classList.add(mode === 'global' ? 'global-graph' : 'subject-graph');
     }
 
-    const width = mode === 'global' ? 1600 : 920;
-    const height = mode === 'global' ? 900 : mode === 'subject' ? 620 : 480;
+    const width = mode === 'global' ? 2200 : 920;
+    const height = mode === 'global' ? 1300 : mode === 'subject' ? 620 : 480;
     const groups = [...new Set(nodes.map((node) => node.group))].sort();
     const colors = new Map(groups.map((group, index) => [group, palette[index % palette.length]]));
     const nodeMap = layout(nodes, edges, width, height);
@@ -143,7 +209,7 @@
     container.replaceChildren(svg, tooltip);
 
     const nodeElements = new Map();
-    const labelThreshold = nodes.length > 100 ? 4 : nodes.length > 45 ? 2 : 1;
+    const labelThreshold = nodes.length > 100 ? 7 : nodes.length > 45 ? 2 : 1;
     const openNode = (node) => { window.location.href = `${window.SITE_ROOT}${node.url}`; };
 
     const updateEdges = () => {
