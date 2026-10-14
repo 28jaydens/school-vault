@@ -12,7 +12,10 @@
   });
 
   document.querySelectorAll('[data-menu-toggle]').forEach((button) => {
-    button.addEventListener('click', () => document.body.classList.toggle('menu-open'));
+    button.addEventListener('click', () => {
+      const open = document.body.classList.toggle('menu-open');
+      document.querySelectorAll('[data-menu-toggle]').forEach((toggle) => toggle.setAttribute('aria-expanded', String(open)));
+    });
   });
 
   const dialog = document.getElementById('search-dialog');
@@ -79,6 +82,10 @@
     if (event.target === dialog) dialog.close();
   });
   document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && document.body.classList.contains('menu-open')) {
+      document.body.classList.remove('menu-open');
+      document.querySelectorAll('[data-menu-toggle]').forEach((toggle) => toggle.setAttribute('aria-expanded', 'false'));
+    }
     if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 'k') {
       event.preventDefault();
       openSearch();

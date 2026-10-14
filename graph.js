@@ -20,7 +20,7 @@
   const layout = (nodes, edges, width, height) => {
     const centerX = width / 2;
     const centerY = height / 2;
-    const radius = Math.min(width, height) * .35;
+    const radius = Math.min(width, height) * (nodes.length > 100 ? .42 : .35);
     nodes.forEach((node, index) => {
       const angle = (index / Math.max(nodes.length, 1)) * Math.PI * 2 + (hash(node.id) % 100) / 100;
       node.x = centerX + Math.cos(angle) * radius * (.65 + (hash(`${node.id}r`) % 35) / 100);
@@ -40,7 +40,7 @@
           let dx = b.x - a.x;
           let dy = b.y - a.y;
           const distanceSq = Math.max(dx * dx + dy * dy, 80);
-          const force = (nodes.length > 80 ? 1350 : nodes.length > 30 ? 950 : 720) / distanceSq;
+          const force = (nodes.length > 100 ? 2350 : nodes.length > 30 ? 950 : 720) / distanceSq;
           const distance = Math.sqrt(distanceSq);
           dx /= distance;
           dy /= distance;
@@ -57,7 +57,7 @@
         const dx = b.x - a.x;
         const dy = b.y - a.y;
         const distance = Math.max(Math.sqrt(dx * dx + dy * dy), 1);
-        const ideal = edge.type === 'link' ? 105 : 145;
+        const ideal = nodes.length > 100 ? (edge.type === 'link' ? 140 : 195) : (edge.type === 'link' ? 105 : 145);
         const force = (distance - ideal) * .0038;
         a.vx += (dx / distance) * force;
         a.vy += (dy / distance) * force;
@@ -105,8 +105,8 @@
       container.classList.add(mode === 'global' ? 'global-graph' : 'subject-graph');
     }
 
-    const width = mode === 'global' ? 1120 : 920;
-    const height = mode === 'global' ? 720 : mode === 'subject' ? 620 : 480;
+    const width = mode === 'global' ? 1600 : 920;
+    const height = mode === 'global' ? 900 : mode === 'subject' ? 620 : 480;
     const groups = [...new Set(nodes.map((node) => node.group))].sort();
     const colors = new Map(groups.map((group, index) => [group, palette[index % palette.length]]));
     const nodeMap = layout(nodes, edges, width, height);
