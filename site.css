@@ -160,36 +160,37 @@ kbd { border: 1px solid rgba(255,255,255,.13); background: rgba(0,0,0,.2); borde
 .legend-dot { width: 8px; height: 8px; border-radius: 50%; }
 
 body.graph-home {
-  --bg: #000000;
-  --panel: #090b10;
-  --panel-2: #11141b;
-  --text: #f3f6ff;
-  --muted: #9ba5b8;
-  --line: #242936;
-  --accent: #8b96ff;
-  --accent-soft: #171b37;
+  --bg: #040817;
+  --panel: #091127;
+  --panel-2: #0f1933;
+  --text: #edf3ff;
+  --muted: #94a4c4;
+  --line: #203158;
+  --accent: #7892f5;
+  --accent-soft: #14234d;
   overflow: hidden;
-  background: #000;
+  background: #040817;
 }
 .graph-home .sidebar { transform: translateX(-105%); transition: transform .2s ease; box-shadow: 20px 0 60px rgba(0,0,0,.65); }
 .graph-home.menu-open .sidebar { transform: translateX(0); }
 .graph-home .page-area { margin-left: 0; height: 100vh; min-height: 0; }
 .graph-home .mobile-header { display: none; }
 .graph-home .main-content { width: 100%; height: 100vh; margin: 0; padding: 0; }
-.graph-home .global-graph-section { position: relative; width: 100%; height: 100vh; margin: 0; padding: 0; border: 0; border-radius: 0; box-shadow: none; background: #000; }
-.graph-home .knowledge-graph.global-graph { width: 100%; height: 100vh; min-height: 100vh; border: 0; border-radius: 0; background: #000; }
+.graph-home .global-graph-section { position: relative; width: 100%; height: 100vh; margin: 0; padding: 0; border: 0; border-radius: 0; box-shadow: none; background: #040817; }
+.graph-home .knowledge-graph.global-graph { width: 100%; height: 100vh; min-height: 100vh; border: 0; border-radius: 0; background: radial-gradient(circle at 50% 46%, #0b1735 0, #060c20 45%, #030612 100%); }
+.graph-canvas { display: block; width: 100%; height: 100%; touch-action: none; user-select: none; }
 .graph-home .graph-heading { position: absolute; z-index: 5; top: 14px; left: 64px; right: 14px; align-items: flex-start; margin: 0; pointer-events: none; }
-.graph-home .graph-heading > div:first-child, .graph-home .graph-actions { padding: 8px 11px; border: 1px solid rgba(255,255,255,.1); border-radius: 11px; background: rgba(9,11,16,.82); box-shadow: 0 10px 30px rgba(0,0,0,.28); backdrop-filter: blur(12px); pointer-events: auto; }
+.graph-home .graph-heading > div:first-child, .graph-home .graph-actions { padding: 8px 11px; border: 1px solid rgba(126,153,230,.16); border-radius: 11px; background: rgba(7,15,34,.84); box-shadow: 0 10px 30px rgba(0,0,0,.28); backdrop-filter: blur(12px); pointer-events: auto; }
 .graph-home .graph-heading .eyebrow { display: none; }
 .graph-home .graph-heading h1, .graph-home .graph-heading h2 { margin: 0; font-family: var(--sans); font-size: .9rem; letter-spacing: 0; }
 .graph-home .graph-heading p { margin-top: 1px; font-size: .68rem; }
 .graph-home .graph-actions { align-items: flex-end; padding: 7px; }
 .graph-home .graph-search span { display: none; }
-.graph-home .graph-search input { width: min(230px, 30vw); height: 32px; background: #11141b; }
-.graph-home .graph-controls button { height: 32px; background: #11141b; }
+.graph-home .graph-search input { width: min(230px, 30vw); height: 32px; background: #0f1933; }
+.graph-home .graph-controls button { height: 32px; background: #0f1933; }
 .graph-home .graph-legend { display: none; }
-.graph-home .graph-menu-button { position: fixed; z-index: 45; top: 14px; left: 14px; display: grid; place-items: center; width: 38px; height: 38px; padding: 0; border: 1px solid rgba(255,255,255,.13); border-radius: 10px; background: rgba(9,11,16,.88); color: #f3f6ff; box-shadow: 0 10px 30px rgba(0,0,0,.35); backdrop-filter: blur(12px); cursor: pointer; font-size: .92rem; }
-.graph-home .graph-menu-button:hover { border-color: rgba(255,255,255,.28); background: #151925; }
+.graph-home .graph-menu-button { position: fixed; z-index: 45; top: 14px; left: 14px; display: grid; place-items: center; width: 38px; height: 38px; padding: 0; border: 1px solid rgba(126,153,230,.2); border-radius: 10px; background: rgba(7,15,34,.9); color: #edf3ff; box-shadow: 0 10px 30px rgba(0,0,0,.35); backdrop-filter: blur(12px); cursor: pointer; font-size: .92rem; }
+.graph-home .graph-menu-button:hover { border-color: rgba(151,174,245,.42); background: #111d3d; }
 .graph-home .scrim { position: fixed; inset: 0; z-index: 20; display: none; background: rgba(0,0,0,.56); backdrop-filter: blur(3px); }
 .graph-home.menu-open .scrim { display: block; }
 
