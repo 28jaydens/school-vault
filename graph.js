@@ -29,12 +29,12 @@
       membersByGroup.get(node.group).push(node);
     });
     if (largeGraph) {
-      const horizontalGap = 130;
-      const verticalGap = 125;
-      const nodeGapX = 100;
-      const nodeGapY = 82;
-      const blockPaddingX = 150;
-      const blockPaddingY = 135;
+      const horizontalGap = 150;
+      const verticalGap = 150;
+      const nodeGapX = 130;
+      const nodeGapY = 110;
+      const blockPaddingX = 170;
+      const blockPaddingY = 150;
       const availableWidth = width - 220;
       const blocks = [...membersByGroup.entries()]
         .map(([group, members]) => {
@@ -341,18 +341,20 @@
       return item;
     }));
 
-    let scale = 1;
-    let panX = 0;
-    let panY = 0;
+    const initialScale = mode === 'global' ? 1.35 : 1;
+    let scale = initialScale;
+    let panX = width * (1 - initialScale) / 2;
+    let panY = height * (1 - initialScale) / 2;
     const applyTransform = () => viewport.setAttribute('transform', `translate(${panX} ${panY}) scale(${scale})`);
     const zoomAt = (nextScale, centerX = width / 2, centerY = height / 2) => {
-      nextScale = clamp(nextScale, .45, 3.2);
+      if (!Number.isFinite(nextScale) || nextScale <= 0) return;
       const ratio = nextScale / scale;
       panX = centerX - (centerX - panX) * ratio;
       panY = centerY - (centerY - panY) * ratio;
       scale = nextScale;
       applyTransform();
     };
+    applyTransform();
     const graphPoint = (event) => {
       const rect = svg.getBoundingClientRect();
       return {
@@ -434,9 +436,9 @@
     section.querySelector('[data-graph-zoom="in"]').addEventListener('click', () => zoomAt(scale * 1.2));
     section.querySelector('[data-graph-zoom="out"]').addEventListener('click', () => zoomAt(scale / 1.2));
     section.querySelector('[data-graph-reset]').addEventListener('click', () => {
-      scale = 1;
-      panX = 0;
-      panY = 0;
+      scale = initialScale;
+      panX = width * (1 - initialScale) / 2;
+      panY = height * (1 - initialScale) / 2;
       applyTransform();
     });
 
