@@ -1,0 +1,602 @@
+{
+	"nodes": [
+		{
+			"id": "g_light",
+			"type": "group",
+			"label": "1  Capturing light",
+			"x": -30,
+			"y": 200,
+			"width": 390,
+			"height": 1190,
+			"color": "3"
+		},
+		{
+			"id": "g_lr",
+			"type": "group",
+			"label": "2  Light reactions",
+			"x": 490,
+			"y": 200,
+			"width": 390,
+			"height": 1190,
+			"color": "4"
+		},
+		{
+			"id": "g_calvin",
+			"type": "group",
+			"label": "3  Making and testing sugar",
+			"x": 1010,
+			"y": 200,
+			"width": 390,
+			"height": 1190,
+			"color": "5"
+		},
+		{
+			"id": "g_eco",
+			"type": "group",
+			"label": "4  Energy in ecosystems",
+			"x": 1530,
+			"y": 200,
+			"width": 390,
+			"height": 1190,
+			"color": "2"
+		},
+		{
+			"id": "light",
+			"type": "text",
+			"text": "### Light and the spectrum\nPhotons; visible 380–750 nm; shorter λ = more energy\n\n[[Light and the Electromagnetic Spectrum|open note]]",
+			"x": 0,
+			"y": 260,
+			"width": 330,
+			"height": 170
+		},
+		{
+			"id": "pig",
+			"type": "text",
+			"text": "### Pigments\nChlorophyll a (main), chlorophyll b and carotenoids (accessory); absorption vs. action spectrum\n\n[[Photosynthetic Pigments|open note]]",
+			"x": 0,
+			"y": 490,
+			"width": 330,
+			"height": 170
+		},
+		{
+			"id": "exc",
+			"type": "text",
+			"text": "### Excited chlorophyll\ne⁻ jumps up; caught by an acceptor, or falls back as heat + red light\n\n[[Chlorophyll Excitation and Fluorescence|open note]]",
+			"x": 0,
+			"y": 720,
+			"width": 330,
+			"height": 170
+		},
+		{
+			"id": "eff",
+			"type": "text",
+			"text": "### Energy efficiency\nReflected, transmitted, absorbed; only a few % stored in sugar\n\n[[Energy Efficiency of Photosynthesis|open note]]",
+			"x": 0,
+			"y": 950,
+			"width": 330,
+			"height": 170
+		},
+		{
+			"id": "act7",
+			"type": "text",
+			"text": "### Activity 7\nExtract reflects green, glows red; pigments absorb different colors\n\n[[Activity 7 - Light and Pigments|open note]]",
+			"x": 0,
+			"y": 1180,
+			"width": 330,
+			"height": 170
+		},
+		{
+			"id": "chl",
+			"type": "text",
+			"text": "### Chloroplast\nThylakoid, granum, stroma, lumen\n\n[[Chloroplast Structure|open note]]",
+			"x": 520,
+			"y": 260,
+			"width": 330,
+			"height": 170
+		},
+		{
+			"id": "ps",
+			"type": "text",
+			"text": "### Photosystems\nAntenna pigments → reaction center → primary e⁻ acceptor; PSII P680, PSI P700\n\n[[Photosystems|open note]]",
+			"x": 520,
+			"y": 490,
+			"width": 330,
+			"height": 170
+		},
+		{
+			"id": "lrx",
+			"type": "text",
+			"text": "### Light reactions\nH₂O split; ETC; H⁺ gradient; makes O₂, ATP, NADPH\n\n[[Light Reactions|open note]]",
+			"x": 520,
+			"y": 720,
+			"width": 330,
+			"height": 170
+		},
+		{
+			"id": "z",
+			"type": "text",
+			"text": "### Z scheme\nElectron energy: two light-driven lifts, two downhill runs\n\n[[Z Scheme|open note]]",
+			"x": 520,
+			"y": 950,
+			"width": 330,
+			"height": 170
+		},
+		{
+			"id": "atp",
+			"type": "text",
+			"text": "### ATP and NADPH\nEnergy carrier and electron carrier; redox\n\n[[ATP and NADPH|open note]]",
+			"x": 520,
+			"y": 1180,
+			"width": 330,
+			"height": 170
+		},
+		{
+			"id": "ov",
+			"type": "text",
+			"text": "### Photosynthesis overview\n6 CO₂ + 6 H₂O + light → C₆H₁₂O₆ + 6 O₂\n\n[[Photosynthesis Overview|open note]]",
+			"x": 1040,
+			"y": 260,
+			"width": 330,
+			"height": 170
+		},
+		{
+			"id": "cal",
+			"type": "text",
+			"text": "### Calvin–Benson cycle\nFixation (RuBisCO) → reduction → regeneration; 6 CO₂ + 18 ATP + 12 NADPH = 1 glucose\n\n[[Calvin-Benson Cycle|open note]]",
+			"x": 1040,
+			"y": 490,
+			"width": 330,
+			"height": 170
+		},
+		{
+			"id": "carb",
+			"type": "text",
+			"text": "### Carbohydrates\nGlucose, maltose, sucrose, starch; dehydration synthesis and hydrolysis\n\n[[Carbohydrates and Glycosidic Bonds|open note]]",
+			"x": 1040,
+			"y": 720,
+			"width": 330,
+			"height": 170
+		},
+		{
+			"id": "iki",
+			"type": "text",
+			"text": "### Activity 8: IKI\nStarch helix traps iodine: blue-black\n\n[[Activity 8 - IKI Test for Starch|open note]]",
+			"x": 1040,
+			"y": 950,
+			"width": 330,
+			"height": 170
+		},
+		{
+			"id": "ben",
+			"type": "text",
+			"text": "### Activity 9: Benedict's\nReducing sugars: blue → orange when heated\n\n[[Activity 9 - Benedict Test for Reducing Sugars|open note]]",
+			"x": 1040,
+			"y": 1180,
+			"width": 330,
+			"height": 170
+		},
+		{
+			"id": "auto",
+			"type": "text",
+			"text": "### Autotrophs vs heterotrophs\nMake food vs. eat food; both respire\n\n[[Autotrophs vs Heterotrophs|open note]]",
+			"x": 1560,
+			"y": 260,
+			"width": 330,
+			"height": 170
+		},
+		{
+			"id": "act6",
+			"type": "text",
+			"text": "### Activities 6 and 11\nElodea, Cladophora, Spirogyra, Oscillatoria\n\n[[Activity 6 and 11 - Photosynthetic Autotrophs|open note]]",
+			"x": 1560,
+			"y": 490,
+			"width": 330,
+			"height": 170
+		},
+		{
+			"id": "fc",
+			"type": "text",
+			"text": "### Food chains\nProducer → consumers; arrows follow the energy\n\n[[Food Chains and Trophic Levels|open note]]",
+			"x": 1560,
+			"y": 720,
+			"width": 330,
+			"height": 170
+		},
+		{
+			"id": "pyr",
+			"type": "text",
+			"text": "### Energy pyramid\nAbout 10% passes up each trophic level\n\n[[Energy Pyramid and the 10 Percent Rule|open note]]",
+			"x": 1560,
+			"y": 950,
+			"width": 330,
+			"height": 170
+		},
+		{
+			"id": "resp",
+			"type": "text",
+			"text": "### Glycolysis and respiration\nGlucose + O₂ → CO₂ + H₂O + ATP; the reverse of photosynthesis\n\n[[Glycolysis and Cellular Respiration|open note]]",
+			"x": 1560,
+			"y": 1180,
+			"width": 330,
+			"height": 170
+		},
+		{
+			"id": "g_leaf",
+			"type": "group",
+			"label": "5  Leaf, water and lab technique",
+			"x": -70,
+			"y": 1470,
+			"width": 2190,
+			"height": 260,
+			"color": "6"
+		},
+		{
+			"id": "leaf",
+			"type": "text",
+			"text": "### Leaf structure\nCuticle, epidermis, mesophyll, veins; xylem and phloem\n\n[[Leaf Structure and Water Transport|open note]]",
+			"x": -40,
+			"y": 1530,
+			"width": 330,
+			"height": 170
+		},
+		{
+			"id": "stom",
+			"type": "text",
+			"text": "### Stomata and transpiration\nGuard cells open and close the pore: CO₂ in, water out\n\n[[Stomata and Transpiration|open note]]",
+			"x": 320,
+			"y": 1530,
+			"width": 330,
+			"height": 170
+		},
+		{
+			"id": "lab",
+			"type": "text",
+			"text": "### Lab: water retention\n% mass change; stomata\n\n[[Lab - Water Retention in Plants|open note]]",
+			"x": 680,
+			"y": 1530,
+			"width": 330,
+			"height": 170
+		},
+		{
+			"id": "photo",
+			"type": "text",
+			"text": "### Photorespiration, C4, CAM\nRuBisCO binds O₂ when stomata close; C4 = space, CAM = time\n\n[[Photorespiration, C4 and CAM Plants|open note]]",
+			"x": 1040,
+			"y": 1530,
+			"width": 330,
+			"height": 170
+		},
+		{
+			"id": "amph",
+			"type": "text",
+			"text": "### Amphipathic molecules\nEthanol and phospholipids; ethanol releases membrane pigments\n\n[[Amphipathic Molecules and Membranes|open note]]",
+			"x": 1400,
+			"y": 1530,
+			"width": 330,
+			"height": 170
+		},
+		{
+			"id": "act10",
+			"type": "text",
+			"text": "### Activity 10\nDecolorize a leaf, stain for starch: chlorophyll and light needed\n\n[[Activity 10 - Pigments and Energy Transformation in Leaf|open note]]",
+			"x": 1760,
+			"y": 1530,
+			"width": 330,
+			"height": 170
+		},
+		{
+			"id": "title",
+			"type": "text",
+			"text": "# Test 2: Energy and Photosynthesis\nFollow the energy left to right: light → electrons → ATP and NADPH → sugar → food chain.\n\n[[Honors Biology - Test 2 Master Notes|Master notes]] · [[Unit 2 - Photosynthesis Hub|Unit hub]]",
+			"x": 520,
+			"y": -40,
+			"width": 850,
+			"height": 190,
+			"color": "1"
+		},
+		{
+			"id": "fig0",
+			"type": "file",
+			"file": "02-Classes/Honors Biology/Attachments/Unit 2 - Photosynthesis/u2-light-reactions.png",
+			"x": -40,
+			"y": 1840,
+			"width": 730,
+			"height": 500
+		},
+		{
+			"id": "fig1",
+			"type": "file",
+			"file": "02-Classes/Honors Biology/Attachments/Unit 2 - Photosynthesis/u2-z-scheme.png",
+			"x": 720,
+			"y": 1840,
+			"width": 730,
+			"height": 500
+		},
+		{
+			"id": "fig2",
+			"type": "file",
+			"file": "02-Classes/Honors Biology/Attachments/Unit 2 - Photosynthesis/u2-calvin-cycle.png",
+			"x": 1480,
+			"y": 1840,
+			"width": 730,
+			"height": 500
+		},
+		{
+			"id": "fig3",
+			"type": "file",
+			"file": "02-Classes/Honors Biology/Attachments/Unit 2 - Photosynthesis/u2-energy-pyramid.png",
+			"x": -40,
+			"y": 2380,
+			"width": 730,
+			"height": 500
+		},
+		{
+			"id": "fig4",
+			"type": "file",
+			"file": "02-Classes/Honors Biology/Attachments/Unit 2 - Photosynthesis/u2-light-fate.png",
+			"x": 720,
+			"y": 2380,
+			"width": 730,
+			"height": 500
+		},
+		{
+			"id": "fig5",
+			"type": "file",
+			"file": "02-Classes/Honors Biology/Attachments/Unit 2 - Photosynthesis/u2-carbohydrate-tests.png",
+			"x": 1480,
+			"y": 2380,
+			"width": 730,
+			"height": 500
+		}
+	],
+	"edges": [
+		{
+			"id": "e0",
+			"fromNode": "light",
+			"fromSide": "bottom",
+			"toNode": "pig",
+			"toSide": "top",
+			"label": "absorbed by"
+		},
+		{
+			"id": "e1",
+			"fromNode": "pig",
+			"fromSide": "bottom",
+			"toNode": "exc",
+			"toSide": "top",
+			"label": "photon excites e⁻"
+		},
+		{
+			"id": "e2",
+			"fromNode": "light",
+			"fromSide": "bottom",
+			"toNode": "eff",
+			"toSide": "top",
+			"label": "only part is usable"
+		},
+		{
+			"id": "e3",
+			"fromNode": "exc",
+			"fromSide": "right",
+			"toNode": "ps",
+			"toSide": "left",
+			"label": "e⁻ caught by acceptor"
+		},
+		{
+			"id": "e4",
+			"fromNode": "pig",
+			"fromSide": "right",
+			"toNode": "ps",
+			"toSide": "left",
+			"label": "organised into"
+		},
+		{
+			"id": "e5",
+			"fromNode": "pig",
+			"fromSide": "bottom",
+			"toNode": "act7",
+			"toSide": "top",
+			"label": "tested in"
+		},
+		{
+			"id": "e6",
+			"fromNode": "chl",
+			"fromSide": "bottom",
+			"toNode": "ps",
+			"toSide": "top",
+			"label": "thylakoid membrane holds"
+		},
+		{
+			"id": "e7",
+			"fromNode": "ps",
+			"fromSide": "bottom",
+			"toNode": "lrx",
+			"toSide": "top",
+			"label": "PSII then PSI"
+		},
+		{
+			"id": "e8",
+			"fromNode": "lrx",
+			"fromSide": "bottom",
+			"toNode": "z",
+			"toSide": "top",
+			"label": "energy view"
+		},
+		{
+			"id": "e9",
+			"fromNode": "lrx",
+			"fromSide": "bottom",
+			"toNode": "atp",
+			"toSide": "top",
+			"label": "makes"
+		},
+		{
+			"id": "e10",
+			"fromNode": "atp",
+			"fromSide": "top",
+			"toNode": "cal",
+			"toSide": "bottom",
+			"label": "ATP + NADPH power it"
+		},
+		{
+			"id": "e11",
+			"fromNode": "ov",
+			"fromSide": "bottom",
+			"toNode": "cal",
+			"toSide": "top",
+			"label": "stage 2"
+		},
+		{
+			"id": "e12",
+			"fromNode": "ov",
+			"fromSide": "left",
+			"toNode": "lrx",
+			"toSide": "right",
+			"label": "stage 1"
+		},
+		{
+			"id": "e13",
+			"fromNode": "cal",
+			"fromSide": "bottom",
+			"toNode": "carb",
+			"toSide": "top",
+			"label": "glucose"
+		},
+		{
+			"id": "e14",
+			"fromNode": "carb",
+			"fromSide": "bottom",
+			"toNode": "iki",
+			"toSide": "top",
+			"label": "starch"
+		},
+		{
+			"id": "e15",
+			"fromNode": "carb",
+			"fromSide": "bottom",
+			"toNode": "ben",
+			"toSide": "top",
+			"label": "reducing end"
+		},
+		{
+			"id": "e16",
+			"fromNode": "cal",
+			"fromSide": "right",
+			"toNode": "auto",
+			"toSide": "left",
+			"label": "carbon fixation"
+		},
+		{
+			"id": "e17",
+			"fromNode": "act6",
+			"fromSide": "top",
+			"toNode": "auto",
+			"toSide": "bottom",
+			"label": "examples"
+		},
+		{
+			"id": "e18",
+			"fromNode": "auto",
+			"fromSide": "bottom",
+			"toNode": "fc",
+			"toSide": "top",
+			"label": "producers start it"
+		},
+		{
+			"id": "e19",
+			"fromNode": "fc",
+			"fromSide": "bottom",
+			"toNode": "pyr",
+			"toSide": "top",
+			"label": "10% per step"
+		},
+		{
+			"id": "e20",
+			"fromNode": "resp",
+			"fromSide": "top",
+			"toNode": "pyr",
+			"toSide": "bottom",
+			"label": "heat lost"
+		},
+		{
+			"id": "e21",
+			"fromNode": "carb",
+			"fromSide": "right",
+			"toNode": "resp",
+			"toSide": "left",
+			"label": "glucose burned"
+		},
+		{
+			"id": "e22",
+			"fromNode": "eff",
+			"fromSide": "right",
+			"toNode": "pyr",
+			"toSide": "left",
+			"label": "losses before level 1"
+		},
+		{
+			"id": "e23",
+			"fromNode": "leaf",
+			"fromSide": "right",
+			"toNode": "stom",
+			"toSide": "left",
+			"label": "lower epidermis"
+		},
+		{
+			"id": "e24",
+			"fromNode": "stom",
+			"fromSide": "right",
+			"toNode": "lab",
+			"toSide": "left",
+			"label": "measured as"
+		},
+		{
+			"id": "e25",
+			"fromNode": "stom",
+			"fromSide": "right",
+			"toNode": "photo",
+			"toSide": "left",
+			"label": "closed: low CO₂"
+		},
+		{
+			"id": "e26",
+			"fromNode": "stom",
+			"fromSide": "top",
+			"toNode": "cal",
+			"toSide": "bottom",
+			"label": "CO₂ in"
+		},
+		{
+			"id": "e27",
+			"fromNode": "photo",
+			"fromSide": "top",
+			"toNode": "cal",
+			"toSide": "bottom",
+			"label": "RuBisCO binds O₂"
+		},
+		{
+			"id": "e28",
+			"fromNode": "amph",
+			"fromSide": "right",
+			"toNode": "act10",
+			"toSide": "left",
+			"label": "ethanol removes pigment"
+		},
+		{
+			"id": "e29",
+			"fromNode": "iki",
+			"fromSide": "right",
+			"toNode": "act10",
+			"toSide": "left",
+			"label": "stain for starch"
+		},
+		{
+			"id": "e30",
+			"fromNode": "leaf",
+			"fromSide": "top",
+			"toNode": "eff",
+			"toSide": "bottom",
+			"label": "reflect, absorb, transmit"
+		}
+	]
+}
