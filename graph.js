@@ -29,6 +29,76 @@
       membersByGroup.get(node.group).push(node);
     });
     if (largeGraph) {
+      const horizontalGap = 130;
+      const verticalGap = 125;
+      const nodeGapX = 100;
+      const nodeGapY = 82;
+      const blockPaddingX = 150;
+      const blockPaddingY = 135;
+      const availableWidth = width - 220;
+      const blocks = [...membersByGroup.entries()]
+        .map(([group, members]) => {
+          const columns = Math.ceil(Math.sqrt(members.length * 1.35));
+          const rows = Math.ceil(members.length / columns);
+          return {
+            group,
+            members: [...members].sort((a, b) => (b.degree || 0) - (a.degree || 0) || a.title.localeCompare(b.title)),
+            columns,
+            rows,
+            width: blockPaddingX + Math.max(columns - 1, 0) * nodeGapX,
+            height: blockPaddingY + Math.max(rows - 1, 0) * nodeGapY
+          };
+        })
+        .sort((a, b) => b.members.length - a.members.length || a.group.localeCompare(b.group));
+
+      const shelves = [];
+      let shelf = {blocks: [], width: 0, height: 0};
+      blocks.forEach((block) => {
+        const nextWidth = shelf.blocks.length ? shelf.width + horizontalGap + block.width : block.width;
+        if (shelf.blocks.length && nextWidth > availableWidth) {
+          shelves.push(shelf);
+          shelf = {blocks: [], width: 0, height: 0};
+        }
+        shelf.blocks.push(block);
+        shelf.width = shelf.blocks.length === 1 ? block.width : shelf.width + horizontalGap + block.width;
+        shelf.height = Math.max(shelf.height, block.height);
+      });
+      if (shelf.blocks.length) shelves.push(shelf);
+
+      const usedHeight = shelves.reduce((sum, row) => sum + row.height, 0) + verticalGap * Math.max(shelves.length - 1, 0);
+      let rowY = Math.max((height - usedHeight) / 2, 70);
+      shelves.forEach((row) => {
+        let blockX = (width - row.width) / 2;
+        row.blocks.forEach((block) => {
+          const blockCenterX = blockX + block.width / 2;
+          const blockCenterY = rowY + row.height / 2;
+          const slots = [];
+          for (let slotRow = 0; slotRow < block.rows; slotRow += 1) {
+            for (let slotColumn = 0; slotColumn < block.columns; slotColumn += 1) {
+              slots.push({
+                x: blockCenterX + (slotColumn - (block.columns - 1) / 2) * nodeGapX,
+                y: blockCenterY + (slotRow - (block.rows - 1) / 2) * nodeGapY
+              });
+            }
+          }
+          slots.sort((a, b) => {
+            const distanceA = (a.x - blockCenterX) ** 2 + (a.y - blockCenterY) ** 2;
+            const distanceB = (b.x - blockCenterX) ** 2 + (b.y - blockCenterY) ** 2;
+            return distanceA - distanceB || a.y - b.y || a.x - b.x;
+          });
+          block.members.forEach((node, index) => {
+            node.x = slots[index].x;
+            node.y = slots[index].y;
+            node.vx = 0;
+            node.vy = 0;
+          });
+          blockX += block.width + horizontalGap;
+        });
+        rowY += row.height + verticalGap;
+      });
+      return new Map(nodes.map((node) => [node.id, node]));
+    }
+    if (largeGraph) {
       const groupNames = [...membersByGroup.keys()].sort();
       const columns = Math.ceil(Math.sqrt(groupNames.length * width / height));
       const rows = Math.ceil(groupNames.length / columns);
@@ -171,10 +241,10 @@
       container.classList.add(mode === 'global' ? 'global-graph' : 'subject-graph');
     }
 
-    const width = mode === 'global' ? 2200 : 920;
-    const height = mode === 'global' ? 1300 : mode === 'subject' ? 620 : 480;
+    const width = mode === 'global' ? 3600 : 920;
+    const height = mode === 'global' ? 1900 : mode === 'subject' ? 620 : 480;
     const groups = [...new Set(nodes.map((node) => node.group))].sort();
-    const colors = new Map(groups.map((group, index) => [group, palette[index % palette.length]]));
+    const colors = new Map(groups.map((group) => [group, '#7487ff']));
     const nodeMap = layout(nodes, edges, width, height);
     const svg = createSvg('svg', {
       viewBox: `0 0 ${width} ${height}`,
@@ -209,7 +279,7 @@
     container.replaceChildren(svg, tooltip);
 
     const nodeElements = new Map();
-    const labelThreshold = nodes.length > 100 ? 7 : nodes.length > 45 ? 2 : 1;
+    const labelThreshold = nodes.length > 100 ? 15 : nodes.length > 45 ? 2 : 1;
     const openNode = (node) => { window.location.href = `${window.SITE_ROOT}${node.url}`; };
 
     const updateEdges = () => {
@@ -231,7 +301,7 @@
         role: 'link',
         'aria-label': `${node.title}, ${node.group}`
       });
-      const radius = 6.5 + Math.min(node.degree || 0, 8) * .7 + (node.home ? 3 : 0);
+      const radius = (6.5 + Math.min(node.degree || 0, 8) * .7 + (node.home ? 3 : 0)) * (mode === 'global' ? 1.35 : 1);
       group.append(createSvg('circle', {r: radius, fill: colors.get(node.group)}));
       const label = createSvg('text', {
         x: radius + 5,
