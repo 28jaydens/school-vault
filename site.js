@@ -95,5 +95,22 @@
       openSearch();
     }
   });
+
+  document.querySelectorAll('.auto-timeline').forEach((timeline) => {
+    const search = timeline.querySelector('[data-timeline-search-input]');
+    const unit = timeline.querySelector('[data-timeline-unit-filter]');
+    const events = [...timeline.querySelectorAll('.timeline-event')];
+    const filter = () => {
+      const query = search.value.trim().toLowerCase();
+      const selectedUnit = unit.value;
+      events.forEach((item) => {
+        const matchesText = !query || item.dataset.timelineSearch.includes(query);
+        const matchesUnit = selectedUnit === '0' || item.dataset.timelineUnit === selectedUnit;
+        item.hidden = !(matchesText && matchesUnit);
+      });
+    };
+    search.addEventListener('input', filter);
+    unit.addEventListener('change', filter);
+  });
 })();
 

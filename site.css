@@ -159,6 +159,21 @@ kbd { border: 1px solid rgba(255,255,255,.13); background: rgba(0,0,0,.2); borde
 .legend-item { display: inline-flex; align-items: center; gap: 6px; }
 .legend-dot { width: 8px; height: 8px; border-radius: 50%; }
 
+.auto-timeline { margin: 2rem 0 1rem; }
+.timeline-controls { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-bottom: 24px; }
+.timeline-controls input, .timeline-controls select { height: 40px; border: 1px solid var(--line); border-radius: 9px; background: var(--panel-2); color: var(--text); padding: 0 11px; }
+.timeline-controls input { flex: 1; min-width: 220px; }
+.timeline-controls input:focus, .timeline-controls select:focus { outline: 0; border-color: var(--accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 18%, transparent); }
+.timeline-events { position: relative; margin-left: 8px; padding-left: 30px; border-left: 2px solid var(--accent); }
+.timeline-event { position: relative; margin: 0 0 16px; padding: 14px 16px; border: 1px solid var(--line); border-radius: 11px; background: var(--panel-2); }
+.timeline-event[hidden] { display: none; }
+.timeline-dot { position: absolute; left: -38px; top: 19px; width: 14px; height: 14px; border: 3px solid var(--panel); border-radius: 50%; background: var(--accent); }
+.timeline-event-main { display: grid; grid-template-columns: 105px minmax(0, 1fr); gap: 10px; align-items: baseline; }
+.timeline-event-main time { color: var(--accent); font-weight: 800; }
+.timeline-event-main strong { line-height: 1.45; }
+.timeline-meta { display: flex; justify-content: space-between; gap: 14px; margin-top: 8px; color: var(--muted); font-size: .75rem; }
+.timeline-meta a { text-align: right; }
+
 body.graph-home {
   --bg: #040817;
   --panel: #091127;
@@ -241,6 +256,9 @@ body.graph-home {
   .graph-home .graph-heading > div:first-child { display: none; }
   .graph-home .graph-actions { width: 100%; justify-content: space-between; margin-top: 0; }
   .graph-home .graph-search input { width: 100%; }
+  .timeline-event-main { grid-template-columns: 1fr; gap: 2px; }
+  .timeline-meta { display: block; }
+  .timeline-meta a { display: block; margin-top: 4px; text-align: left; }
 }
 
 @media print {
