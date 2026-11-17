@@ -1,0 +1,44 @@
+<svg xmlns='http://www.w3.org/2000/svg' width='560' height='460' viewBox='0 0 560 460' font-family='Segoe UI, Arial, sans-serif' font-size='14'>
+<rect width='100%' height='100%' fill='white'/>
+<defs><marker id='arr' markerWidth='10' markerHeight='10' refX='5' refY='5' orient='auto'><path d='M0,0 L10,5 L0,10 z' fill='black'/></marker></defs>
+<rect x='90' y='50' width='400' height='340' fill='#e9eef5' stroke='black' stroke-width='2'/>
+<rect x='118' y='58' width='44' height='12' fill='white' stroke='black'/>
+<text x='140' y='40' text-anchor='middle' font-size='16' font-weight='bold'>M</text>
+<rect x='118' y='106' width='44' height='8' fill='#555' rx='2'/>
+<rect x='118' y='146' width='44' height='8' fill='#555' rx='2'/>
+<rect x='118' y='196' width='44' height='8' fill='#555' rx='2'/>
+<rect x='118' y='246' width='44' height='8' fill='#555' rx='2'/>
+<rect x='118' y='296' width='44' height='8' fill='#555' rx='2'/>
+<rect x='118' y='336' width='44' height='8' fill='#555' rx='2'/>
+<rect x='188' y='58' width='44' height='12' fill='white' stroke='black'/>
+<text x='210' y='40' text-anchor='middle' font-size='16' font-weight='bold'>A</text>
+<rect x='188' y='146' width='44' height='8' fill='#1b2a6b' rx='2'/>
+<rect x='188' y='246' width='44' height='8' fill='#1b2a6b' rx='2'/>
+<rect x='188' y='296' width='44' height='8' fill='#1b2a6b' rx='2'/>
+<rect x='258' y='58' width='44' height='12' fill='white' stroke='black'/>
+<text x='280' y='40' text-anchor='middle' font-size='16' font-weight='bold'>B</text>
+<rect x='258' y='146' width='44' height='8' fill='#1b2a6b' rx='2'/>
+<rect x='258' y='196' width='44' height='8' fill='#1b2a6b' rx='2'/>
+<rect x='258' y='296' width='44' height='8' fill='#1b2a6b' rx='2'/>
+<rect x='328' y='58' width='44' height='12' fill='white' stroke='black'/>
+<text x='350' y='40' text-anchor='middle' font-size='16' font-weight='bold'>C</text>
+<rect x='328' y='106' width='44' height='8' fill='#1b2a6b' rx='2'/>
+<rect x='328' y='196' width='44' height='8' fill='#1b2a6b' rx='2'/>
+<rect x='328' y='336' width='44' height='8' fill='#1b2a6b' rx='2'/>
+<rect x='398' y='58' width='44' height='12' fill='white' stroke='black'/>
+<text x='420' y='40' text-anchor='middle' font-size='16' font-weight='bold'>D</text>
+<rect x='398' y='146' width='44' height='8' fill='#1b2a6b' rx='2'/>
+<rect x='398' y='196' width='44' height='8' fill='#1b2a6b' rx='2'/>
+<rect x='398' y='296' width='44' height='8' fill='#1b2a6b' rx='2'/>
+<text x='82' y='115' text-anchor='end' font-size='13'>100 kDa</text>
+<text x='82' y='155' text-anchor='end' font-size='13'>75 kDa</text>
+<text x='82' y='205' text-anchor='end' font-size='13'>50 kDa</text>
+<text x='82' y='255' text-anchor='end' font-size='13'>37 kDa</text>
+<text x='82' y='305' text-anchor='end' font-size='13'>25 kDa</text>
+<text x='82' y='345' text-anchor='end' font-size='13'>15 kDa</text>
+<text x='290' y='22' text-anchor='middle' font-size='18' font-weight='bold'>−</text>
+<text x='290' y='418' text-anchor='middle' font-size='18' font-weight='bold'>+</text>
+<line x1='510' y1='80' x2='510' y2='370' stroke='black' stroke-width='1.5' marker-end='url(#arr)'/>
+<text transform='translate(532,225) rotate(90)' text-anchor='middle' font-size='13'>direction of migration</text>
+<text x='290' y='445' text-anchor='middle' font-size='13' fill='#444'>M = protein size marker · A–D = protein extracted from four plant species</text>
+</svg>
