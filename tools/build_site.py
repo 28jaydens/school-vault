@@ -225,6 +225,20 @@ class Vault:
                 elif p.suffix.lower() not in SKIP_EXT and not fn.startswith("."):
                     self.files[rel] = p
                     self.files_by_name.setdefault(fn.lower(), []).append(rel)
+        # Excalidraw drawings: not rendered, but their text labels are shown where they are embedded
+        self.drawings: dict[str, dict] = {}
+        ex = root / "Excalidraw"
+        if ex.is_dir():
+            for p in sorted(ex.glob("*.md")):
+                txt = read_text(p)
+                m = re.search(r"## Text Elements\r?\n(.*?)(?:\r?\n## |\r?\n%%|\Z)", txt, re.S)
+                items: list[str] = []
+                if m:
+                    for chunk in re.split(r"\s*\^\w+\s*(?:\r?\n|$)", m.group(1)):
+                        chunk = " ".join(l.strip() for l in chunk.strip().splitlines() if l.strip())
+                        if chunk:
+                            items.append(chunk)
+                self.drawings[p.stem.lower()] = {"title": p.stem, "items": items}
 
     # ----- resolution
     def resolve_note(self, target: str, from_note: Note | None) -> Note | None:
@@ -461,6 +475,8 @@ class Renderer:
             return f'<span class="broken-link" title="Not published">{esc(label)}</span>'
         target_note = self.vault.resolve_note(page, note) if page else note
         if not target_note:
+            if page.split("/")[-1].lower() in self.vault.drawings:
+                return f'<span class="drawing-link" title="Excalidraw drawing, open in Obsidian">{esc(label)}</span>'
             return f'<span class="broken-link" title="No note called {esc(page)}">{esc(label)}</span>'
         if target_note is not note:
             note.links.add(target_note.id)
@@ -498,6 +514,12 @@ class Renderer:
         # note embed → link card with excerpt
         tn = self.vault.resolve_note(page, note)
         if not tn:
+            d = self.vault.drawings.get(page.split("/")[-1].lower())
+            if d:
+                items = "".join(f"<li>{esc(t)}</li>" for t in d["items"][:40])
+                return (f'<div class="drawing-card"><div class="drawing-head"><span class="eyebrow">Excalidraw drawing</span>'
+                        f'<strong>{esc(d["title"])}</strong><span>The sketch itself only renders inside Obsidian. These are its labels:</span></div>'
+                        f'<ul class="drawing-labels">{items}</ul></div>')
             return f'<span class="broken-link">Missing note: {esc(page)}</span>'
         note.links.add(tn.id)
         href = rel_href(note, tn) + (("#" + slugify(anchor.lstrip("^"), "-")) if anchor else "")
